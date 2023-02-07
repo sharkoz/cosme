@@ -5,7 +5,7 @@ isoCode = "fr"
 weight = 1
 rtl = false
 
-title = "Congo"
+title = "Cosme Charlier"
 description = "My awesome website"
 copyright = "Copy, _right?_ :thinking_face:"
 
@@ -16,8 +16,8 @@ dateFormat = "2 January 2006"
 
 [author]
   name = "Cosme Charlier"
-  # image = "img/author.jpg"
-  headline = "I'm only human"
+  image = "img/author.jpg"
+  headline = "I'm only humanoid"
   bio = "A little bit about me"
   links = [
   #   { email = "mailto:hello@your_domain.com" },
@@ -40,7 +40,7 @@ dateFormat = "2 January 2006"
   #   { keybase = "https://keybase.io/username" },
   #   { kickstarter = "https://www.kickstarter.com/profile/username" },
   #   { lastfm = "https://lastfm.com/user/username" },
-  #   { linkedin = "https://linkedin.com/in/username" },
+      { linkedin = "https://linkedin.com/in/cosmecharlier" },
   #   { mastodon = "https://mastodon.instance/@username" },
   #   { medium = "https://medium.com/username" },
   #   { microsoft = "https://www.microsoft.com/" },
