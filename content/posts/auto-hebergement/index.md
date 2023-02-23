@@ -99,5 +99,5 @@ Chaque élément mérite sans doute d'être explicité. Par conséquent, je pré
 
 <div style="text-align: right"> 
 
-*Poursuivons la discussions sur le fil du [Journal du Hacker](https://www.journalduhacker.net/s/mqymuy/lauto_h_bergement_en_2023)* 
+*Poursuivons la discussion sur le fil du [Journal du Hacker](https://www.journalduhacker.net/s/mqymuy/lauto_h_bergement_en_2023)* 
 </div>
