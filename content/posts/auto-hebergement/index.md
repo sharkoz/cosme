@@ -14,7 +14,7 @@ L'objectif de ce post est de donner une vue globale des options que j'ai choisie
 
 ## Définition
 
-L'auto hébergement de services consiste à faire tourner soi même les logiciels qu'on utilise, par opposition à l'utilisation de solutions qui sont gérées par des tiers. Concrètement, cela regroupe l'ensemble des pratiques liées à l'hébergement de services et a l'administration de serveurs #TODO
+L'auto hébergement de services consiste à faire tourner soi même les logiciels qu'on utilise, par opposition à l'utilisation de solutions qui sont gérées par des tiers. Concrètement, cela regroupe l'ensemble des pratiques liées à l'hébergement de services et a l'administration de serveurs
 
 ## Matériel
 
