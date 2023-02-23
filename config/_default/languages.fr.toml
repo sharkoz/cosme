@@ -6,7 +6,7 @@ weight = 1
 rtl = false
 
 title = "Cosme Charlier"
-description = "My awesome website"
+description = "Site personnel de Cosme Charlier"
 copyright = "Copy, _right?_ :thinking_face:"
 
 dateFormat = "2 January 2006"
@@ -17,7 +17,7 @@ dateFormat = "2 January 2006"
 [author]
   name = "Cosme Charlier"
   image = "img/author.jpg"
-  headline = "I'm only humanoid"
+  headline = "Je parle d'auto-hébergement, de domotique, de devops..."
   bio = ""
   links = [
   #   { email = "mailto:hello@your_domain.com" },
@@ -52,7 +52,7 @@ dateFormat = "2 January 2006"
   #   { slack = "https://workspace.url/team/userid" },
   #   { snapchat = "https://snapchat.com/add/username" },
   #   { soundcloud = "https://soundcloud.com/username" },
-      { stack-overflow = "https://stackoverflow.com/users/userid/username" },
+      { stack-overflow = "https://stackoverflow.com/users/2335212/cch" },
   #   { steam = "https://steamcommunity.com/profiles/userid" },
   #   { telegram = "https://t.me/username" },
   #   { tiktok = "https://tiktok.com/@username" },

@@ -1,0 +1,8 @@
+.max-w-prose, .prose {
+    max-width: 85ch;
+  }
+
+  .px-1 {
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
