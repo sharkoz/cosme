@@ -4,7 +4,6 @@ date: 2023-02-23
 summary: Une présentation des choix que je fais en 2023 pour gérer mes services auto hébergés
 description: Une présentation des choix que je fais en 2023 pour gérer mes services auto hébergés
 keywords: hébergement, auto, auto-hébergement, self-hosted, serveur, maison
-draft: true
 ---
 
 Suite a un article discuté sur Hacker News ([Self hosting in 2023](https://news.ycombinator.com/item?id=34860655)) sur l'auto-hébergement, je me suis dit qu'il serait intéressant de partager en français mon approche personnelle.
