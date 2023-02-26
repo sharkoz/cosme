@@ -1,8 +1,8 @@
 ---
 title: "Cloudflare Tunnels"
 date: 2023-02-26
-summary: Configuration de Cloudflare Tunnels pour une sécuritée accrue de votre serveur
-description: Configuration de Cloudflare Tunnels pour une sécuritée accrue de votre serveur
+summary: Configuration de Cloudflare Tunnels pour une sécurité accrue de votre serveur
+description: Configuration de Cloudflare Tunnels pour une sécurité accrue de votre serveur
 keywords: hébergement, auto, auto-hébergement, self-hosted, serveur, maison, sécurité, cloudflare, waf, vpn
 draft: false
 ---
