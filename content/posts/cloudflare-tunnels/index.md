@@ -221,5 +221,5 @@ J'espère que ce billet vous aura été utile, où au moins instructif ! Je comp
 
 <div style="text-align: right"> 
 
-*Poursuivons la discussion sur le fil du [Journal du Hacker](https://www.journalduhacker.net/)* 
+*Poursuivons la discussion sur le fil du [Journal du Hacker](https://www.journalduhacker.net/s/0lc57i/cloudflare_tunnels)* 
 </div>
