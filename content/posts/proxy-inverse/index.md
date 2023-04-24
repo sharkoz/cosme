@@ -3,7 +3,8 @@ title: "Déployer et exposer ses services auto hébergés en quelques secondes"
 date: 2023-04-23
 summary: Une présentation de configuration a base de docker compose et traefik qui permet de déployer très rapidement de noveaux services auto hébergés
 description: Une présentation de configuration a base de docker compose et traefik qui permet de déployer très rapidement de noveaux services auto hébergés
-draft: true
+draft: false
+unlisted: true
 keywords: hébergement, auto, auto-hébergement, self-hosted, serveur, maison
 ---
 
