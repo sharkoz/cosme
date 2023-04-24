@@ -98,7 +98,6 @@ C'est ici qu'entre en jeu le *proxy inverse*, ou *reverse proxy* en anglais.
 Le rôle du proxy inverse, est de capter en un point unique (via un seul port) le traffic à destination de plusieurs services, et de router ensuite chaque requête vers le bon service. Un schéma simplifié du fonctionnement est le suivant :
 
 {{< mermaid >}}
-
 graph LR;
     subgraph  
     direction LR
@@ -116,7 +115,6 @@ graph LR;
     RP--:443-->BS2
     RP--:8080-->BS3
     end
-
 {{< /mermaid >}}
 
 Pour notre besoin, on voit qu'on peut ici faire tourner plusieurs services dans des conteneurs Docker, qu'ils utilisent ou pas le même port, et tout exposer au final depuis le proxy inverse qui écoute sur le port HTTPS (toujours le 443). 
