@@ -99,22 +99,20 @@ Le rôle du proxy inverse, est de capter en un point unique (via un seul port) l
 
 {{< mermaid >}}
 graph LR;
-    subgraph  
-    direction LR
-    C[Client]
-
-    subgraph  SERVEUR
-    RP[Proxy inverse]
-
-    BS1[Service 1]
-    BS2[Service 2]
-    BS3[Service 3]
-    end
-    C--:443-->RP
-    RP--:443-->BS1
-    RP--:443-->BS2
-    RP--:8080-->BS3
-    end
+subgraph &nbsp;
+direction LR
+C[Client]
+subgraph  SERVEUR
+RP[Proxy inverse]
+BS1[Service 1]
+BS2[Service 2]
+BS3[Service 3]
+end
+C--:443-->RP
+RP--:443-->BS1
+RP--:443-->BS2
+RP--:8080-->BS3
+end
 {{< /mermaid >}}
 
 Pour notre besoin, on voit qu'on peut ici faire tourner plusieurs services dans des conteneurs Docker, qu'ils utilisent ou non le même port, et tout exposer au final depuis le proxy inverse qui écoute sur le port HTTPS (toujours le 443). 
