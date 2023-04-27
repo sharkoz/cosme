@@ -1,8 +1,8 @@
 ---
-title: "Déployer et exposer ses services auto hébergés en quelques secondes"
+title: "Déployer ses services auto-hébergés en quelques secondes"
 date: 2023-04-23
-summary: Une présentation de configuration a base de Docker Compose et Traefik qui permet de déployer très rapidement de noveaux services auto hébergés
-description: Une présentation de configuration a base de Docker Compose et Traefik qui permet de déployer très rapidement de noveaux services auto hébergés
+summary: Une présentation de configuration a base de Docker Compose et Traefik qui permet de déployer très rapidement de nouveaux services auto hébergés
+description: Une présentation de configuration a base de Docker Compose et Traefik qui permet de déployer très rapidement de nouveaux services auto hébergés
 draft: false
 _build:
   list: never
@@ -65,6 +65,9 @@ Accept: */*
 
 Et voilà ! En quelques lignes de YAML et une commande, nous avons déployé une application conteneurisée. Je ne vais pas rentrer ici dans toutes les options de paramétrage fournies par docker compose, mais par exemple, vous pouvez changer facilement le port (8888) sur lequel est exposé l'application dans le fichier yml, sans avoir à configurer le service lui-même. Un cas d'utilisation courant est également de partager des répertoires locaux du serveur avec le conteneur pour persister des données hors du conteneur, en utilisant des `volumes`. Mais tout cela fera l'objet d'un autre billet !
 
+{{< alert "circle-info" >}}
+Les services conteneurisés sont souvent fournis avec des exemples de fichiers docker-compose, mais parfois on retrouve uniquement une commande `docker`. Dans ce cas vous pouvez créer le fichier très rapidement en utilisant [Composerize](https://www.composerize.com/) 
+{{< /alert >}}
 
 ## Exposer tous les services sur un même port grâce à un *proxy inverse* {#reverse-proxy}
 
@@ -269,5 +272,5 @@ Bien sûr les approches exposées ici sont simplifiées et mériteront sans dout
 
 <div style="text-align: right"> 
 
-*Poursuivons la discussion sur le fil du [Journal du Hacker](https://www.journalduhacker.net/s/)* 
+*Poursuivons la discussion sur le fil du [Journal du Hacker](https://www.journalduhacker.net/s/0sd21o/d_ployer_ses_services_auto_h_berg_s_en)* 
 </div>
