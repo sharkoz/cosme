@@ -4,10 +4,7 @@ date: 2023-04-23
 summary: Une présentation de configuration a base de Docker Compose et Traefik qui permet de déployer très rapidement de nouveaux services auto hébergés
 description: Une présentation de configuration a base de Docker Compose et Traefik qui permet de déployer très rapidement de nouveaux services auto hébergés
 draft: false
-_build:
-  list: never
-  publishResources: true
-  render: always
+
 keywords: hébergement, auto, auto-hébergement, self-hosted, serveur, maison
 ---
 
