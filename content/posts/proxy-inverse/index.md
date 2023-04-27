@@ -1,8 +1,8 @@
 ---
 title: "Déployer et exposer ses services auto hébergés en quelques secondes"
 date: 2023-04-23
-summary: Une présentation de configuration a base de docker compose et traefik qui permet de déployer très rapidement de noveaux services auto hébergés
-description: Une présentation de configuration a base de docker compose et traefik qui permet de déployer très rapidement de noveaux services auto hébergés
+summary: Une présentation de configuration a base de Docker Compose et Traefik qui permet de déployer très rapidement de noveaux services auto hébergés
+description: Une présentation de configuration a base de Docker Compose et Traefik qui permet de déployer très rapidement de noveaux services auto hébergés
 draft: false
 _build:
   list: never
@@ -17,7 +17,7 @@ Aujourd'hui, je vais vous présenter ma méthode de travail qui me permet d'exé
 Pour vous donner les grandes lignes de cette méthode :
 - Je fais tourner les services dans des environnements isolés et reproductibles grâce à [Docker Compose](#docker-compose)
 - Ces services sont automatiquement exposés sur mon serveur grâce à un [proxy inverse](#reverse-proxy) (Traefik)
-- Je les rends accessibles depuis l'extérieur en utilisant des sous-domaines DNS
+- Je les rends accessibles depuis l'extérieur en utilisant des [sous-domaines DNS](#sous-domaines)
 
 ## Un déploiement éclair avec Docker Compose {#docker-compose}
 
@@ -42,7 +42,9 @@ services:
       - 8888:80
 {{< /highlight >}}
 
-Ici, sans rentrer dans le détail du fonctionnement de Docker Compose (je vous renvoie encore vers la [doc](https://docs.docker.com/compose/features-uses/)), on définit un service nommé `my-whoami` (ligne 3), qui exécute l'image `traefik/whoami`, et que l'on va exposer sur le port 8888 de notre serveur. J'ai nommé le répertoire, le service et l'image avec 3 noms différents pour bien montrer que l'on peut nommer le service et le répertoire comme on veut, le seul que l'on ne peut pas changer est le nom de l'image qui détermine quelle application on souhaite exécuter. Pour simplifier on peut nommer les 3 de la même manière, mais pour l'exercice d'aujourd'hui, séparer les noms permet de mieux comprendre de quoi on parle.
+Ici, sans rentrer dans le détail du fonctionnement de Docker Compose (je vous renvoie encore vers la [doc](https://docs.docker.com/compose/features-uses/)), on définit un service nommé `my-whoami` (ligne 3), qui exécute l'image `traefik/whoami`, et que l'on va exposer sur le port 8888 de notre serveur (ligne 6). La syntaxe du paramètre `ports` signifie ici qu'une requête arrivant sur le port 8888 du serveur est redirigée par Docker sur le port 80 du conteneur : c'est justement le port qu'utilise `whoami`.
+
+J'ai nommé le répertoire, le service et l'image avec 3 noms différents pour bien montrer que l'on peut nommer le service et le répertoire comme on veut, le seul que l'on ne peut pas changer est le nom de l'image qui détermine quelle application on souhaite exécuter. Pour simplifier on peut nommer les 3 de la même manière, mais pour l'exercice d'aujourd'hui, séparer les noms permet de mieux comprendre de quoi on parle.
 
 Une fois ce fichier écrit, on peut se rendre dans le répertoire `who`, lancer le conteneur avec la commande `docker compose up -d`, et vérifier le bon fonctionnement de l'application sur le port 8888 :
 {{< highlight console "" >}}
@@ -78,7 +80,7 @@ Bind for 0.0.0.0:8888 failed: port is already allocated
 {{< /highlight >}}
 
 Pour faire simple, la dernière ligne nous dit bien que le port 8888 est déjà utilisé et que donc on ne peut pas le réutiliser.
-Donc si vous voulez avoir plusieurs services accessibles sur votre serveur, en première approche il faudrait associer à chaque service un port différent. a peut être vite difficile à retenir !
+Donc si vous voulez avoir plusieurs services accessibles sur votre serveur, en première approche il faudrait associer à chaque service un port différent. Ca peut être vite difficile à retenir !
 
 D'autant plus que cette notion de *port* est importante, car par défaut, le web utilise principalement deux ports :
 - Le port <mark>80</mark> pour les appels HTTP[^1]
@@ -121,7 +123,7 @@ Personnellement, j'utilise [Traefik](https://doc.traefik.io/traefik/) comme prox
 
 Je ne vais pas rentrer aujourd'hui dans le détail de la configuration de Traefik, ça pourra faire l'objet d'un autre billet. Nous allons donc partir de la configuration minimale proposée dans la documentation, qui n'est pas en HTTPS mais en HTTP. Pour l'exercice dans un premier temps, cela suffira.
 
-Comme précédemment, nous allons donc créer à côté du répertoire  `who` un répertoire `traefik`, et écrire dans ce répertoire un fichier `wdocker-compose.yml`.
+Comme précédemment, nous allons donc créer à côté du répertoire  `who` un répertoire `traefik`, et écrire dans ce répertoire un fichier `docker-compose.yml`.
 
 Voici le contenu de ce fichier `traefik/docker-compose.yml`
 {{< highlight yml "linenos=table,hl_lines=22" >}}
@@ -146,7 +148,7 @@ networks:
 {{< /highlight >}}
 
 Cette fois-ci, nous allons déployer le proxy inverse *Traefik*, qui écoutera sur le port HTTP <mark>80</mark>. Nous lui donnons accès à la *socket Docker* à la ligne 9, ce qui lui permet de lire les informations sur les autres conteneurs, notamment les *labels*.
-Nous déployons également à la ligne 11 une deuxième instance du service *whoami* que nous appellons cette fois *whoami2* (oui j'étais inspiré !). Nous voyons que nous ajoutons à la ligne 14 un *label*, qui sert ici à donner à Traefik la condition sur laquelle se baser pour rediriger les requêtes vers ce conteneur. Pour ce conteneur, nous n'exposons pas de port sur l'hôte (pas de paramètre `ports` comme nous le faisons à la ligne 7 pour Traefik), donc par défaut il n'est pas joignable directement. La seule manière d'y accéder sera à travers le proxy inverse.
+Nous déployons également à la ligne 11 une deuxième instance du service *whoami* que nous appellons cette fois *whoami2* (oui j'étais inspiré !). Nous voyons que nous ajoutons à la ligne 14 un *label*, qui sert ici à donner à Traefik la condition sur laquelle se baser pour rediriger les requêtes vers ce conteneur. Pour ce conteneur, nous n'exposons pas de port sur l'hôte (pas de paramètre `ports` comme nous le faisons à la ligne 7 pour Traefik), donc par défaut il n'est pas joignable directement. La seule manière d'y accéder sera à travers le proxy inverse. Il faut quand même garder en tête que même si Docker n'expose pas le port du conteneur sur le serveur, le service `whoami` lui écoute toujours sur le port 80 du conteneur.
 Le bloc `networks` à partir de la ligne 16 permet de définir un réseau virtuel appelé *traefik* dont nous nous servirons au chapitre suivant.
 
 Pour tester tout cela, on recommence : Depuis le répertoire `traefik` vous exécutez la commande : `docker compose up -d` :
@@ -228,12 +230,16 @@ Pour bien comprendre ces résultats :
 - Ce conteneur est appelé via 2 chemins différents : la première fois via Traefik (ligne 5 on voit le header `X-Forwarded-Server` avec l'ID du conteneur de Traefik), la seconde fois en direct via le port 8888 (et sans header `X-Forwarded-*`)
 - L'appel ligne 12 est sur le conteneur créé dans le même fichier que Traefik, on voit que son *Hostname* est différent ligne 13, par contre il est bien passé par le même proxy inverse que le premier appel, comme on peut le voir en comparant les lignes 5 et 16
 
-## Exposition externe avec des sous-domaines
+## Exposition externe avec des sous-domaines {#sous-domaines}
 
 L'exemple du chapitre précédent présente une configuration minimale pour utiliser un proxy inverse pour vos services. Pour citer ses principaux défauts :
 - Il utilise le protocole HTTP alors que la norme est maintenant au HTTPS. Pour pallier à cela, je vous invite à consulter la [documentation](https://doc.traefik.io/traefik/https/acme/) car il existe de nombreuses configurations possibles selon votre situation. Mais Traefik permet d'obternir très facilement des certificats automatiques gérés par Let's Encrypt.
 - Il expose vos services directement sur internet (si votre port 80 est exposé bien sûr), ce qui les rend accessibles par tous. Pour rajouter une couche de sécurité, j'utilise le plugin [traefik-forward-auth](https://github.com/thomseddon/traefik-forward-auth) qui vous permet de restreindre l'accès à vos services à des utilisateurs authentifiés auprès d'un fournisseur d'identité (Google, Github, etc.). La configuration dépend là aussi pas mal de votre contexte, mais je ferai peut-être un billet sur le sujet un jour.
 - La configuration du routage via des chemins est simple mais parfois peut interférer avec le fonctionnement des services eux-mêmes. Pour pallier à cela, le plus propre est d'attribuer à chaque service un sous-domaine DNS. Je vais prendre quelques lignes pour l'expliquer.
+
+{{< alert "triangle-exclamation" >}}
+Cette étape suppose que vous possédez un nom de domaine et que vous savez le configurer. Si ça n'est pas le cas, vous pouvez le simuler en modifiant votre fichier hosts, comme c'est expliqué par exemple [ici](https://www.journaldufreenaute.fr/comment-modifier-votre-fichier-hosts-sous-windows-mac-ou-linux/).
+{{< /alert >}}
 
 Pour ce dernier point, l'idée est donc d'attribuer à chaque service un sous-domaine DNS dédié. Il faut donc pour cela en pré-requis être le propriétaire d'un domaine, par exemple `mondomaine.com`. L'idée ensuite est donc de configurer :
 - `service1.mondomaine.com` pour pointer vers un premier service
@@ -245,7 +251,7 @@ Pour obtenir ce résultat, il suffit de changer le label du routeur pour utilise
 - "traefik.http.routers.my-unique-service.rule=Host(`monservice.mondomaine.com`)"
 ```
 
-Il faut bien sûr, en parallèle, configurer ce sous-domaine dans votre gestionnaire de DNS, pour qu'il pointe vers l'adresse IP de votre serveur.
+Il faut bien sûr, en parallèle, configurer ce sous-domaine dans votre gestionnaire de DNS, pour qu'il pointe vers l'adresse IP de votre serveur. Je parle de ça dans l'article sur [Cloudflare](../cloudflare-tunnels/#d%c3%a9ploiement-de-cloudflare-sur-votre-domaine) qui est le gestionnaire de DNS que j'utilise.
 
 Et le tour en est joué ! Vos services ont maintenant chacun un sous-domaine dédié.
 
