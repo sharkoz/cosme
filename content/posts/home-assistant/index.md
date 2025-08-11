@@ -2,6 +2,7 @@
 title: "Pourquoi j'ai choisi Home Assistant pour ma domotique"
 date: 2025-08-10
 summary: Retour d'expérience sur l'utilisation de Home Assistant pour une maison connectée, de Philips Hue aux capteurs Zigbee en passant par l'arrosage automatique
+draft: true
 ---
 
 La domotique, ou maison connectée, désigne l'ensemble des technologies permettant d'automatiser, de contrôler et de superviser différents équipements de la maison : éclairage, chauffage, volets roulants, arrosage, sécurité, etc. Elle vise à améliorer le confort, la sécurité et l'efficacité énergétique du logement, tout en offrant une certaine forme d'intelligence au quotidien.
