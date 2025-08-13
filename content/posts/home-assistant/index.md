@@ -39,9 +39,12 @@ C'est à ce moment que j'ai cherché à unifier tout ça, et que j'ai découvert
 
 Home assistant propose dans sa [documentation](https://www.home-assistant.io/installation/) deux modes d'installation :
 - Un déploiement via _docker_ appelé _Home Assistant Container_ qui s'installe sur un serveur existant
-- Et un OS complet, appelé _Home Assistant Operating System_ (HA OS), qui monopolise donc l'intégralité du serveur sur lequel ils s'installe (comme un Raspbery Pi ou leur serveur fait maison _Home Assistant Green_, ou dans une machine virtuelle dédiée)
+- Et un OS complet, appelé _Home Assistant Operating System_ (HA OS), qui monopolise donc l'intégralité du serveur sur lequel ils s'installe (comme un Raspbery Pi, ou leur serveur fait maison _Home Assistant Green_, ou dans une machine virtuelle dédiée)
 
-Bien que j'aime habituellement déployer mes services dans des containers Docker ([je l'explique ici]({{< ref "/posts/proxy-inverse/" >}})), ici c'est l'approche _HA OS_ que j'ai choisie, notamment car elle permet d'utiliser des _Add ons_ bien pratiques.
+Bien que j'aime habituellement déployer mes services dans des containers Docker ([je l'explique ici]({{< ref "/posts/proxy-inverse/" >}})), cette fois c'est l'approche _HA OS_ que j'ai choisie, notamment car elle permet d'utiliser des _Addons_ bien pratiques (j'en parlerai tout à l'heure). J'ai donc créé une machine virtuelle vierge, et j'ai installé dessus l'OS Home Assistant.
+
+
+## Premiers pas en terre inconnue
 
 {{< mermaid >}}
 graph TD
@@ -62,8 +65,6 @@ HA --> S[Samsung SmartThings]
 
 HA --> R[...]
 {{< /mermaid >}}
-
-## Premiers pas en terre inconnue
 
 ## Les intégrations
 
